@@ -1,0 +1,141 @@
+# 冻结的评估协议 —— 任务 02 §5 交付项
+# 冻结时间: 2026-09-18
+# 规则来源: 《任务_实验02_数据集清单与评估协议.md》§3
+#
+# ⚠️ 冻结含义: 本文件落盘后，测试集上看过结果即不得回头修改划分与阈值。
+# ⚠️ 当前状态: 阈值尚未取值 —— 按 §3.1 规则 1，阈值只能在 **协议 P1 的 dev 集** 上取一次。
+#    协议 P1 的伪造来源是 CosyVoice2；而 CosyVoice2 生成链尚未跑通，
+#    因此 threshold.value 暂为 null。当前已跑的 signalproc 结果**不产生**冻结阈值，
+#    只作为管线验证（见 blocked_datasets.md 与本文件 unverified_results 段）。
+
+meta:
+  project: voice_clone_spoof_adversarial
+  protocol_version: 1
+  locked_at: "2026-09-18"
+  owner_theory: voice-theory
+  owner_experiment: occworld-exp
+  workspace: /data1/cuitianxu/voice_ws
+
+# ---------------------------------------------------------------- 划分
+splits:
+  unit: speaker                 # 按说话人划分，不按语句
+  seed: 20260918
+  source_dataset: LibriSpeech
+  source_subset: dev-clean      # A1
+  manifest: data/manifests/data_manifest_15col.csv
+  n_speakers_total: 40
+  train: {n_speakers: 28, n_real: 1879, n_fake: 1254}
+  dev:   {n_speakers: 6,  n_real: 413,  n_fake: 246}
+  test:  {n_speakers: 6,  n_real: 411,  n_fake: 1233}
+  disjointness_verified: true   # 见 results/split_check.txt，三交集均为 0
+  frozen: true
+
+# ---------------------------------------------------------------- 阈值
+threshold:
+  source: "P1 的 dev 集，取 EER 交点，只取一次"
+  value: null                   # ← 待协议 P1 跑通后填写
+  status: "pending_protocol_P1"
+  reuse_policy: "P2/P3/P4 一律沿用该值，不得按各集重取"
+  reporting: "跨集结果同时报『冻结阈值』与『该集最优阈值』两列，两者之差本身是结论"
+
+# ---------------------------------------------------------------- 指标定义
+metrics:
+  primary: EER
+  secondary: [min_tDCF, AUC]
+  forbidden: "不得单独用 Accuracy 下结论"
+  eer_definition: "FAR == FRR 的交点"
+  score_direction: "score 越大越像 bonafide(真实)"
+  score_index_note: "模型 logits 索引 1 = bonafide，依据 clovaai/aasist data_utils.py:22 + main.py:307"
+  min_tdcf:
+    status: BLOCKED
+    reason: >
+      min-tDCF 需要 ASV 系统的 target/nontarget 打分作为输入。
+      自建数据（LibriSpeech + 自生成伪造）上不存在 ASV 系统，定义上即缺输入，
+      非实现难度问题。已就此向 voice-theory 提出，等待裁定。
+    resolution_options:
+      - "仅在 ASVspoof2019 LA 上报 min-tDCF，自建数据不报并写明理由"
+      - "自行训练 ASV 基线产打分（评估：课程周期内成本高，且引入新变量源）"
+    prohibited: "禁止伪造 ASV 打分文件以凑齐三项指标"
+  bootstrap_ci:
+    enabled: true
+    n_boot: 1000
+    alpha: 0.05
+    stratification: speaker        # 按说话人分层，不按语句
+    rationale: >
+      同一说话人的语句高度相关；按语句重采样等于把相关样本当独立样本，
+      会把置信区间压得虚窄。本机自检实测：同一构造下说话人分层 CI 宽度
+      是语句分层的 3.52 倍（0.1296 vs 0.0368）。
+    implementation: code/metrics.py::bootstrap_ci_eer
+
+# ---------------------------------------------------------------- 协议
+protocols:
+  P1_in_domain:
+    train: "CosyVoice2 伪造 + 真实，说话人不相交"
+    test:  "同一生成器，未见说话人"
+    question: "检测器是否学会该生成器的指纹"
+    status: pending_cosyvoice2
+  P2_cross_model:
+    train: "同 P1"
+    test:  "F5-TTS、XTTS-v2 伪造"
+    question: "换生成器后是否还认得出"
+    reporting: "必须给 F5-TTS 与 XTTS-v2 **分开**的 EER，不得只给合并值"
+    status: pending_cosyvoice2
+  P3_cross_dataset:
+    train: "同 P1"
+    test:  "ASVspoof2021 DF、In-the-Wild"
+    question: "换数据集与信道后是否还认得出"
+    status: blocked_on_A4_and_B3_B5
+  P4_robustness:
+    train: "同 P1"
+    test:  "P2 伪造再做编解码、噪声、混响、变速"
+    question: "后处理是否摧毁检测能力"
+    status: pending_cosyvoice2
+
+conclusion_metrics:
+  - "ΔEER = EER(P2) − EER(P1)"
+  - "ΔEER = EER(P3) − EER(P1)"
+  - "同一测试集上真实语音的误报率"
+
+# ---------------------------------------------------------------- 数据构造规定
+data_rules:
+  cross_sentence_clone:
+    rule: "克隆目标文本不得与参考音频自身文本重合，用句 ID 判定"
+    evidence_field: prompt_utt_id
+    status: "待 CosyVoice2 生成链产出后填写（当前无克隆数据）"
+  speaker_disjoint:
+    rule: "train/dev/test 说话人集合两两不相交"
+    evidence: results/split_check.txt
+    verified: true
+  attack_logging:
+    rule: "每行写清编解码格式与码率、信噪比、混响 RT60、变速比例；没有的字段写 na，不允许留空"
+    implementation: "manifest 的 attack_params 列"
+    verified: true
+  loudness_matching:
+    rule: "伪造音频的响度必须对齐到源真实语音的 RMS"
+    rationale: >
+      实测教训：首版 melvoc 伪造的 RMS 是源真实语音的 6.3 倍且峰值削波到 1.000。
+      不修则检测器可学到『响=伪造』这一平凡特征，结论全部失效。
+    evidence: "code/make_signalproc_fake.py::match_rms"
+
+# ---------------------------------------------------------------- 未验证结果（不得引用）
+unverified_results:
+  note: >
+    以下结果来自**信号处理类伪造**（melvoc/pitch/formant），
+    而协议 P1 规定伪造来自 CosyVoice2。故这些是管线验证结果，
+    **不得作为协议结果引用**，也不得与文献比较。
+  runs:
+    - id: det_signalproc
+      fake_source: signalproc
+      test_eer_percent: 0.000
+      test_auc: 1.0000
+      n_eval: 1644
+      path: results/det_signalproc/
+    - id: det_holdout_formant
+      fake_source: signalproc (训练排除 formant 类)
+      note: "留一攻击类型，非留一生成器；跨信号处理子类的泛化，不等于跨神经克隆"
+      heldout_formant_eer_percent: 0.730
+      heldout_formant_auc: 0.9995
+      path: results/det_holdout_formant/
+  confound_check: >
+    已排除平凡特征混淆：测试集上 RMS 单特征 AUC=0.5130（等于随机）、时长 0.5004，
+    其余 6 个频谱/时域特征全在 0.35–0.68 区间，无任何单一特征具判别力。

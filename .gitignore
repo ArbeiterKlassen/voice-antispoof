@@ -44,3 +44,17 @@ Thumbs.db
 # 运行产物
 *.log
 nohup.out
+
+# ---- 实验侧补充（2026-10-07）----
+# 第三方仓库副本（276MB，含其上游客的模型文件），不入库，来源见 docs/实验侧环境.md
+code/voiceclone/
+
+# 本机私有环境覆盖（含本机 conda 路径），不入库
+scripts/env.local.sh
+
+# data/ 例外：manifest、下载脚本、校验和按约定入库（data/README.md 的口径）
+!data/manifests/
+!data/*.sh
+!data/*.py
+!data/dataset_audit.csv
+!data/split_check.txt

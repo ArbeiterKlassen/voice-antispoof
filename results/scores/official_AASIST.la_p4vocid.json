@@ -1,0 +1,53 @@
+{
+  "protocol": "P1",
+  "split": "test",
+  "ckpt": "aasist/models/weights/AASIST.pth",
+  "ckpt_epoch": null,
+  "overall": {
+    "eer": 0.01505,
+    "eer_percent": 1.505,
+    "auc": 0.999289,
+    "accuracy": 0.984962,
+    "eer_threshold": 0.944654,
+    "pauc_fpr1pct": 0.978597,
+    "pauc_fpr0p1pct": 0.901578,
+    "real_count": 200,
+    "fake_count": 598,
+    "ci_eer": {
+      "eer_point": 0.01505,
+      "eer_point_percent": 1.505,
+      "ci_lo": 0.0,
+      "ci_hi": 0.033809,
+      "ci_lo_percent": 0.0,
+      "ci_hi_percent": 3.3809,
+      "n_boot": 1000,
+      "n_speakers": 65,
+      "stratified_by": "speaker"
+    }
+  },
+  "frozen_threshold": null,
+  "groups": {
+    "vocoder-id": {
+      "eer": 0.01505,
+      "eer_percent": 1.505,
+      "auc": 0.999289,
+      "accuracy": 0.984962,
+      "eer_threshold": 0.944654,
+      "pauc_fpr1pct": 0.978597,
+      "pauc_fpr0p1pct": 0.901578,
+      "real_count": 200,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.01505,
+        "eer_point_percent": 1.505,
+        "ci_lo": 0.0,
+        "ci_hi": 0.033809,
+        "ci_lo_percent": 0.0,
+        "ci_hi_percent": 3.3809,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    }
+  }
+}

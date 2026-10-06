@@ -1,0 +1,192 @@
+===================================================================
+ VOICE 项目环境报告 (T01 §1)
+ 生成时间: 2026-09-18 15:03:01 CST
+ 主机: leegroup   用户: cuitianxu
+===================================================================
+
+--- 1. GPU (nvidia-smi) ---
+Fri Sep 18 15:03:01 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4090        Off |   00000000:01:00.0 Off |                  Off |
+|100%   74C    P2            416W /  450W |   39707MiB /  49140MiB |    100%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA GeForce RTX 4090        Off |   00000000:21:00.0 Off |                  Off |
+| 64%   46C    P2            197W /  450W |    6507MiB /  49140MiB |     28%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA GeForce RTX 4090        Off |   00000000:41:00.0 Off |                  Off |
+| 63%   36C    P8             24W /  450W |       3MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA GeForce RTX 4090        Off |   00000000:61:00.0 Off |                  Off |
+|100%   70C    P2            377W /  450W |   32114MiB /  49140MiB |    100%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA GeForce RTX 4090        Off |   00000000:81:00.0 Off |                  Off |
+|100%   65C    P2            343W /  450W |   28774MiB /  49140MiB |     99%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA GeForce RTX 4090        Off |   00000000:A1:00.0 Off |                  Off |
+|100%   68C    P2            348W /  450W |   10647MiB /  49140MiB |     88%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA GeForce RTX 4090        Off |   00000000:C1:00.0 Off |                  Off |
+| 66%   57C    P2            220W /  450W |    8175MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA GeForce RTX 4090        Off |   00000000:E1:00.0 Off |                  Off |
+| 95%   60C    P2            350W /  450W |   41389MiB /  49140MiB |     96%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A         1418699      C   ...enna/senna_env/bin/python3.10      39698MiB |
+|    1   N/A  N/A         1783468      C   ...vs/walk_these_ways/bin/python       6494MiB |
+|    3   N/A  N/A         2075776      C   ...enna/senna_env/bin/python3.10      32104MiB |
+|    4   N/A  N/A         1213434      C   python                                11932MiB |
+|    4   N/A  N/A         3257549      C   ...nvs/occworld_repro/bin/python      16786MiB |
+|    5   N/A  N/A         3275144      C   python                                10638MiB |
+|    6   N/A  N/A         2967068      C   python                                 8166MiB |
+|    7   N/A  N/A         3147604      C   ./llama-server                        41380MiB |
++-----------------------------------------------------------------------------------------+
+
+--- 2. GPU 摘要 (index / 显存 / 利用率) ---
+index, name, memory.used [MiB], memory.total [MiB], utilization.gpu [%]
+0, NVIDIA GeForce RTX 4090, 39707 MiB, 49140 MiB, 99 %
+1, NVIDIA GeForce RTX 4090, 6507 MiB, 49140 MiB, 31 %
+2, NVIDIA GeForce RTX 4090, 3 MiB, 49140 MiB, 0 %
+3, NVIDIA GeForce RTX 4090, 32114 MiB, 49140 MiB, 100 %
+4, NVIDIA GeForce RTX 4090, 28774 MiB, 49140 MiB, 100 %
+5, NVIDIA GeForce RTX 4090, 10647 MiB, 49140 MiB, 99 %
+6, NVIDIA GeForce RTX 4090, 8175 MiB, 49140 MiB, 94 %
+7, NVIDIA GeForce RTX 4090, 41389 MiB, 49140 MiB, 95 %
+
+--- 3. 当前占卡进程 ---
+gpu_uuid, pid, used_gpu_memory [MiB]
+GPU-0068b0b8-e410-62fb-3d47-1098b2df738f, 1418699, 39698 MiB
+GPU-83d61926-ef96-a3e1-6847-7d8ee798fe9c, 1783468, 6494 MiB
+GPU-972d0442-acf8-0ed5-4c5f-8a098a0ceb8d, 2075776, 32104 MiB
+GPU-c9188e07-78e9-7b83-1027-144316cdfbb6, 1213434, 11932 MiB
+GPU-c9188e07-78e9-7b83-1027-144316cdfbb6, 3257549, 16786 MiB
+GPU-fe7b0cec-d06a-b8d7-4aff-0bea06c7aa99, 3275144, 10638 MiB
+GPU-3efb823a-3271-6a35-b209-476fe3f1f895, 2967068, 8166 MiB
+GPU-4a9ddd7e-b3bd-4c4d-1e9f-bfc4d2d4cc8e, 3147604, 41380 MiB
+(pid -> 用户/命令)
+  pid 1418699 -> whustu2     15:09:32 /data2/whustu2/Senna/senna_env/bin/python3.10 -u llava/senna/train_senna_llava_multi_img.py --local
+  pid 1783468 -> huzijing  2-05:10:12 /data2/huzijing/.conda/envs/walk_these_ways/bin/python -u scripts/train.py
+
+  pid 2075776 -> whustu2     06:30:41 /data2/whustu2/Senna/senna_env/bin/python3.10 -u llava/senna/train_senna_llava_multi_img.py --local
+  pid 1213434 -> whustu      17:35:04 python train_cvact_db4_lh_stage1_B32_k16_K32_W2.py
+
+  pid 3257549 -> cuitian+       43:38 /home/cuitianxu/.miniconda3/envs/occworld_repro/bin/python -u src/train.py --py-config experiments/
+  pid 3275144 -> yuming         28:21 python trainer5_mmseg.py config/config_model_potsdam_mmseg_m6m_pyramid_min.yaml
+
+  pid 2967068 -> whustu      04:01:38 python -u train_cvusa_semantic_gated_wfas.py --name=B2SG_DB4_WFAS_FULL_FP32 --data_dir=/data1/whust
+  pid 3147604 -> liwenzh+ 10-22:45:32 ./llama-server -m /myhomelns/Qwen3.8-27B-UD-Q8_K_XL.gguf --host 192.168.210.49 --port 8888 --alias 
+
+--- 4. 驱动 / CUDA ---
+driver_version: 580.105.08
+CUDA Version (driver-reported): 13.0
+
+--- 5. Python / PyTorch (项目选用 env: ml2026_exp) ---
+Python 3.10.20
+torch           2.11.0+cu130
+torch.version.cuda 13.0
+cuda.is_available() True
+device_count    8
+device_name[0]  NVIDIA GeForce RTX 4090
+device_capability[0] (8, 9)
+torchaudio      2.11.0+cu130
+soundfile       0.14.0
+librosa         0.11.0
+numpy           2.2.5
+
+--- 6. 磁盘 ---
+Filesystem      Size  Used Avail Use% Mounted on
+udev            126G     0  126G   0% /dev
+tmpfs            26G   40M   26G   1% /run
+/dev/nvme0n1p4  849G  571G  235G  71% /
+tmpfs           126G  3.0G  123G   3% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs           126G     0  126G   0% /sys/fs/cgroup
+/dev/loop0      128K  128K     0 100% /snap/bare/5
+/dev/loop2       64M   64M     0 100% /snap/core20/2866
+/dev/loop3       13M   13M     0 100% /snap/snap-store/1216
+/dev/loop6      532M  532M     0 100% /snap/gnome-42-2204/247
+/dev/loop7       51M   51M     0 100% /snap/snapd/27710
+/dev/loop13     249M  249M     0 100% /snap/gnome-3-38-2004/99
+/dev/loop11      66M   66M     0 100% /snap/gtk-common-themes/1519
+/dev/loop9      350M  350M     0 100% /snap/gnome-3-38-2004/143
+/dev/loop8       92M   92M     0 100% /snap/gtk-common-themes/1535
+/dev/loop10     532M  532M     0 100% /snap/gnome-42-2204/263
+/dev/loop14      55M   55M     0 100% /snap/snap-store/558
+/dev/nvme0n1p2  3.7G  199M  3.3G   6% /boot
+/dev/nvme0n1p1  3.9G  6.1M  3.9G   1% /boot/efi
+/dev/sdc1        15T   13T  1.3T  91% /data2
+/dev/sdb1        15T  9.1T  4.7T  66% /data1
+/dev/sda1        15T  8.2T  5.6T  60% /home
+tmpfs            26G  4.0K   26G   1% /run/user/1001
+tmpfs            26G  4.0K   26G   1% /run/user/1012
+tmpfs            26G     0   26G   0% /run/user/1007
+tmpfs            26G     0   26G   0% /run/user/1021
+tmpfs            26G  4.0K   26G   1% /run/user/1018
+tmpfs            26G     0   26G   0% /run/user/1003
+tmpfs            26G     0   26G   0% /run/user/1013
+tmpfs            26G  1.1M   26G   1% /run/user/1014
+tmpfs            26G     0   26G   0% /run/user/1010
+/dev/loop15      74M   74M     0 100% /snap/core22/2437
+tmpfs            26G     0   26G   0% /run/user/1011
+tmpfs            26G     0   26G   0% /run/user/1005
+tmpfs            26G     0   26G   0% /run/user/1002
+tmpfs            26G     0   26G   0% /run/user/1019
+tmpfs            26G     0   26G   0% /run/user/1022
+tmpfs            26G     0   26G   0% /run/user/1015
+/dev/loop12      51M   51M     0 100% /snap/snapd/27738
+/dev/loop5       74M   74M     0 100% /snap/core22/2955
+/dev/loop4       64M   64M     0 100% /snap/core20/2922
+
+--- 7. 本机 conda env 清点 (哪些有 torch) ---
+
+# conda environments:
+#
+# * -> active
+# + -> frozen
+base                 *   /home/cuitianxu/.miniconda3
+LiNeXt                   /home/cuitianxu/.miniconda3/envs/LiNeXt
+PointRWKV                /home/cuitianxu/.miniconda3/envs/PointRWKV
+ml2026_exp               /home/cuitianxu/.miniconda3/envs/ml2026_exp
+occworld_repro           /home/cuitianxu/.miniconda3/envs/occworld_repro
+voice                    /home/cuitianxu/.miniconda3/envs/voice
+
+
+--- 8. 音频工具 ---
+  ffmpeg  : NOT FOUND (系统级)
+  sox     : NOT FOUND (系统级)
+  soxi    : NOT FOUND (系统级)
+  lame    : NOT FOUND (系统级)
+  flac    : NOT FOUND (系统级)
+  imageio-ffmpeg: ModuleNotFoundError: No module named 'imageio_ffmpeg'
+
+--- 9. 网络可达性 (关键：决定所有下载方式) ---
+  https://github.com                       https://huggingface.co                 HTTP 000  10.049654s
+  https://hf-mirror.com                  HTTP 200  1.414738s
+  https://pypi.org                       HTTP 200  5.948693s
+  https://pypi.tuna.tsinghua.edu.cn      HTTP 302  0.822023s
+  https://www.openslr.org                HTTP 200  2.033102s
+
+--- 10. 结论 ---
+  * 8x RTX 4090, 单卡 49140 MiB (约 48 GB)
+  * github.com / huggingface.co 直连不通 -> 必须用 gh-proxy / hf-mirror
+  * 项目目标卡 = GPU2 (唯一 0 占用)
+===================================================================

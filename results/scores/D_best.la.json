@@ -1,0 +1,30 @@
+{
+  "protocol": "P1",
+  "split": "test",
+  "ckpt": "/data1/cuitianxu/voice_ws/results/det_augr/best.pth",
+  "ckpt_epoch": 4,
+  "overall": {
+    "eer": 0.161798,
+    "eer_percent": 16.1798,
+    "auc": 0.908915,
+    "accuracy": 0.838202,
+    "eer_threshold": 4.101561,
+    "pauc_fpr1pct": 0.555148,
+    "pauc_fpr0p1pct": 0.505347,
+    "real_count": 7355,
+    "fake_count": 63882,
+    "ci_eer": {
+      "eer_point": 0.161798,
+      "eer_point_percent": 16.1798,
+      "ci_lo": 0.148888,
+      "ci_hi": 0.174308,
+      "ci_lo_percent": 14.8888,
+      "ci_hi_percent": 17.4308,
+      "n_boot": 1000,
+      "n_speakers": 67,
+      "stratified_by": "speaker"
+    }
+  },
+  "frozen_threshold": null,
+  "groups": {}
+}

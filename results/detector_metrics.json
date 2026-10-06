@@ -1,0 +1,97 @@
+{
+  "task_required_format": {
+    "eer": 0.0,
+    "auc": 1.0,
+    "accuracy": 1.0,
+    "real_count": 411,
+    "fake_count": 1233
+  },
+  "protocol": "P1 in-domain, test split, signalproc fakes",
+  "caliber": {
+    "split": "test (speaker-disjoint, 6 speakers, 未参与训练)",
+    "n_eval": 1644,
+    "eer_definition": "FAR=FRR 交点, 分数越大越像真实",
+    "score_index": "logits[1] = bonafide (对齐 clovaai/aasist data_utils.py:22)"
+  },
+  "P1_in_domain": {
+    "overall": {
+      "eer": 0.0,
+      "eer_percent": 0.0,
+      "auc": 1.0,
+      "accuracy": 1.0,
+      "eer_threshold": 1.569444,
+      "real_count": 411,
+      "fake_count": 1233
+    },
+    "by_attack_type": {
+      "formant": {
+        "eer": 0.0,
+        "eer_percent": 0.0,
+        "auc": 1.0,
+        "accuracy": 1.0,
+        "eer_threshold": 1.569444,
+        "real_count": 411,
+        "fake_count": 411
+      },
+      "melvoc": {
+        "eer": 0.0,
+        "eer_percent": 0.0,
+        "auc": 1.0,
+        "accuracy": 1.0,
+        "eer_threshold": 1.569444,
+        "real_count": 411,
+        "fake_count": 411
+      },
+      "pitch": {
+        "eer": 0.0,
+        "eer_percent": 0.0,
+        "auc": 1.0,
+        "accuracy": 1.0,
+        "eer_threshold": 1.569444,
+        "real_count": 411,
+        "fake_count": 411
+      }
+    }
+  },
+  "P2_holdout_attack": {
+    "note": "留一攻击类型：训练时排除 formant，测试看 formant",
+    "overall": {
+      "eer": 0.004055,
+      "eer_percent": 0.4055,
+      "auc": 0.999818,
+      "accuracy": 0.995742,
+      "eer_threshold": 1.5412,
+      "real_count": 411,
+      "fake_count": 1233
+    },
+    "by_attack_type": {
+      "formant": {
+        "eer": 0.007299,
+        "eer_percent": 0.7299,
+        "auc": 0.999473,
+        "accuracy": 0.992701,
+        "eer_threshold": 2.077154,
+        "real_count": 411,
+        "fake_count": 411
+      },
+      "melvoc": {
+        "eer": 0.002433,
+        "eer_percent": 0.2433,
+        "auc": 0.999988,
+        "accuracy": 0.997567,
+        "eer_threshold": 1.119667,
+        "real_count": 411,
+        "fake_count": 411
+      },
+      "pitch": {
+        "eer": 0.002433,
+        "eer_percent": 0.2433,
+        "auc": 0.999994,
+        "accuracy": 0.997567,
+        "eer_threshold": 0.168735,
+        "real_count": 411,
+        "fake_count": 411
+      }
+    }
+  }
+}

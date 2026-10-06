@@ -1,0 +1,119 @@
+{
+  "protocol": "P1",
+  "split": "test",
+  "ckpt": "aasist/models/weights/AASIST-L.pth",
+  "ckpt_epoch": null,
+  "overall": {
+    "eer": 0.66597,
+    "eer_percent": 66.597,
+    "auc": 0.304611,
+    "accuracy": 0.33396,
+    "eer_threshold": -6.765005,
+    "pauc_fpr1pct": 0.499379,
+    "pauc_fpr0p1pct": 0.49975,
+    "real_count": 800,
+    "fake_count": 2392,
+    "ci_eer": {
+      "eer_point": 0.66597,
+      "eer_point_percent": 66.597,
+      "ci_lo": 0.640291,
+      "ci_hi": 0.688394,
+      "ci_lo_percent": 64.0291,
+      "ci_hi_percent": 68.8394,
+      "n_boot": 1000,
+      "n_speakers": 65,
+      "stratified_by": "speaker"
+    }
+  },
+  "frozen_threshold": null,
+  "groups": {
+    "pitch-down2": {
+      "eer": 0.668896,
+      "eer_percent": 66.8896,
+      "auc": 0.293181,
+      "accuracy": 0.331187,
+      "eer_threshold": -6.760782,
+      "pauc_fpr1pct": 0.498895,
+      "pauc_fpr0p1pct": 0.49975,
+      "real_count": 800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.668896,
+        "eer_point_percent": 66.8896,
+        "ci_lo": 0.641676,
+        "ci_hi": 0.693865,
+        "ci_lo_percent": 64.1676,
+        "ci_hi_percent": 69.3865,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "pitch-down4": {
+      "eer": 0.665552,
+      "eer_percent": 66.5552,
+      "auc": 0.309396,
+      "accuracy": 0.334764,
+      "eer_threshold": -6.769135,
+      "pauc_fpr1pct": 0.499208,
+      "pauc_fpr0p1pct": 0.49975,
+      "real_count": 800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.665552,
+        "eer_point_percent": 66.5552,
+        "ci_lo": 0.635704,
+        "ci_hi": 0.693865,
+        "ci_lo_percent": 63.5704,
+        "ci_hi_percent": 69.3865,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "pitch-up2": {
+      "eer": 0.650502,
+      "eer_percent": 65.0502,
+      "auc": 0.317314,
+      "accuracy": 0.349785,
+      "eer_threshold": -6.817055,
+      "pauc_fpr1pct": 0.499838,
+      "pauc_fpr0p1pct": 0.49975,
+      "real_count": 800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.650502,
+        "eer_point_percent": 65.0502,
+        "ci_lo": 0.624614,
+        "ci_hi": 0.677674,
+        "ci_lo_percent": 62.4614,
+        "ci_hi_percent": 67.7674,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "pitch-up4": {
+      "eer": 0.677258,
+      "eer_percent": 67.7258,
+      "auc": 0.298554,
+      "accuracy": 0.322604,
+      "eer_threshold": -6.702466,
+      "pauc_fpr1pct": 0.499889,
+      "pauc_fpr0p1pct": 0.49975,
+      "real_count": 800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.677258,
+        "eer_point_percent": 67.7258,
+        "ci_lo": 0.641849,
+        "ci_hi": 0.70371,
+        "ci_lo_percent": 64.1849,
+        "ci_hi_percent": 70.371,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    }
+  }
+}

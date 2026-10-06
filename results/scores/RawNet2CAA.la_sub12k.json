@@ -1,0 +1,30 @@
+{
+  "protocol": "P1",
+  "split": "test",
+  "ckpt": "/data1/cuitianxu/voice_ws/data/_downloads/rawnet2/best.pt",
+  "ckpt_epoch": null,
+  "overall": {
+    "eer": 0.391841,
+    "eer_percent": 39.1841,
+    "auc": 0.655171,
+    "accuracy": 0.608156,
+    "eer_threshold": 10.217556,
+    "pauc_fpr1pct": 0.50385,
+    "pauc_fpr0p1pct": 0.499805,
+    "real_count": 3019,
+    "fake_count": 8996,
+    "ci_eer": {
+      "eer_point": 0.391841,
+      "eer_point_percent": 39.1841,
+      "ci_lo": 0.371832,
+      "ci_hi": 0.411966,
+      "ci_lo_percent": 37.1832,
+      "ci_hi_percent": 41.1966,
+      "n_boot": 500,
+      "n_speakers": 67,
+      "stratified_by": "speaker"
+    }
+  },
+  "frozen_threshold": null,
+  "groups": {}
+}

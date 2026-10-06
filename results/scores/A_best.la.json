@@ -1,0 +1,30 @@
+{
+  "protocol": "P1",
+  "split": "test",
+  "ckpt": "/data1/cuitianxu/voice_ws/results/det_signalproc/best.pth",
+  "ckpt_epoch": 5,
+  "overall": {
+    "eer": 0.174447,
+    "eer_percent": 17.4447,
+    "auc": 0.913296,
+    "accuracy": 0.825554,
+    "eer_threshold": 5.40486,
+    "pauc_fpr1pct": 0.652589,
+    "pauc_fpr0p1pct": 0.55117,
+    "real_count": 7355,
+    "fake_count": 63882,
+    "ci_eer": {
+      "eer_point": 0.174447,
+      "eer_point_percent": 17.4447,
+      "ci_lo": 0.148763,
+      "ci_hi": 0.199904,
+      "ci_lo_percent": 14.8763,
+      "ci_hi_percent": 19.9904,
+      "n_boot": 1000,
+      "n_speakers": 67,
+      "stratified_by": "speaker"
+    }
+  },
+  "frozen_threshold": null,
+  "groups": {}
+}

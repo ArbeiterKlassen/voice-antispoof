@@ -1,0 +1,229 @@
+{
+  "protocol": "P1",
+  "split": "test",
+  "ckpt": "/data1/cuitianxu/voice_ws/code/aasist/models/weights/AASIST.pth",
+  "ckpt_epoch": null,
+  "overall": {
+    "eer": 0.239502,
+    "eer_percent": 23.9502,
+    "auc": 0.798267,
+    "accuracy": 0.760512,
+    "eer_threshold": -3.356958,
+    "pauc_fpr1pct": 0.763813,
+    "pauc_fpr0p1pct": 0.741374,
+    "real_count": 1800,
+    "fake_count": 5382,
+    "ci_eer": {
+      "eer_point": 0.239502,
+      "eer_point_percent": 23.9502,
+      "ci_lo": 0.229378,
+      "ci_hi": 0.251275,
+      "ci_lo_percent": 22.9378,
+      "ci_hi_percent": 25.1275,
+      "n_boot": 1000,
+      "n_speakers": 65,
+      "stratified_by": "speaker"
+    }
+  },
+  "frozen_threshold": null,
+  "groups": {
+    "aac-128k": {
+      "eer": 0.262542,
+      "eer_percent": 26.2542,
+      "auc": 0.789476,
+      "accuracy": 0.737281,
+      "eer_threshold": -3.017488,
+      "pauc_fpr1pct": 0.745836,
+      "pauc_fpr0p1pct": 0.648506,
+      "real_count": 1800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.262542,
+        "eer_point_percent": 26.2542,
+        "ci_lo": 0.247652,
+        "ci_hi": 0.283317,
+        "ci_lo_percent": 24.7652,
+        "ci_hi_percent": 28.3317,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "awgn-snr10": {
+      "eer": 0.259197,
+      "eer_percent": 25.9197,
+      "auc": 0.758281,
+      "accuracy": 0.740617,
+      "eer_threshold": -3.057929,
+      "pauc_fpr1pct": 0.774418,
+      "pauc_fpr0p1pct": 0.655535,
+      "real_count": 1800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.259197,
+        "eer_point_percent": 25.9197,
+        "ci_lo": 0.247278,
+        "ci_hi": 0.270372,
+        "ci_lo_percent": 24.7278,
+        "ci_hi_percent": 27.0372,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "awgn-snr5": {
+      "eer": 0.244147,
+      "eer_percent": 24.4147,
+      "auc": 0.767439,
+      "accuracy": 0.756047,
+      "eer_threshold": -3.292697,
+      "pauc_fpr1pct": 0.792719,
+      "pauc_fpr0p1pct": 0.667835,
+      "real_count": 1800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.244147,
+        "eer_point_percent": 24.4147,
+        "ci_lo": 0.233591,
+        "ci_hi": 0.253834,
+        "ci_lo_percent": 23.3591,
+        "ci_hi_percent": 25.3834,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "bandpass-300-3400": {
+      "eer": 0.225753,
+      "eer_percent": 22.5753,
+      "auc": 0.821036,
+      "accuracy": 0.774812,
+      "eer_threshold": -3.721436,
+      "pauc_fpr1pct": 0.749663,
+      "pauc_fpr0p1pct": 0.647303,
+      "real_count": 1800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.225753,
+        "eer_point_percent": 22.5753,
+        "ci_lo": 0.212119,
+        "ci_hi": 0.239653,
+        "ci_lo_percent": 21.2119,
+        "ci_hi_percent": 23.9653,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "g711-8k": {
+      "eer": 0.22408,
+      "eer_percent": 22.408,
+      "auc": 0.829994,
+      "accuracy": 0.776063,
+      "eer_threshold": -3.767394,
+      "pauc_fpr1pct": 0.75689,
+      "pauc_fpr0p1pct": 0.648412,
+      "real_count": 1800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.22408,
+        "eer_point_percent": 22.408,
+        "ci_lo": 0.210788,
+        "ci_hi": 0.240152,
+        "ci_lo_percent": 21.0788,
+        "ci_hi_percent": 24.0152,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "mp3-64k": {
+      "eer": 0.270903,
+      "eer_percent": 27.0903,
+      "auc": 0.784651,
+      "accuracy": 0.728524,
+      "eer_threshold": -2.878697,
+      "pauc_fpr1pct": 0.743364,
+      "pauc_fpr0p1pct": 0.64328,
+      "real_count": 1800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.270903,
+        "eer_point_percent": 27.0903,
+        "ci_lo": 0.255351,
+        "ci_hi": 0.292513,
+        "ci_lo_percent": 25.5351,
+        "ci_hi_percent": 29.2513,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "opus-32k": {
+      "eer": 0.262542,
+      "eer_percent": 26.2542,
+      "auc": 0.788078,
+      "accuracy": 0.736864,
+      "eer_threshold": -3.013485,
+      "pauc_fpr1pct": 0.747331,
+      "pauc_fpr0p1pct": 0.646638,
+      "real_count": 1800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.262542,
+        "eer_point_percent": 26.2542,
+        "ci_lo": 0.246832,
+        "ci_hi": 0.28215,
+        "ci_lo_percent": 24.6832,
+        "ci_hi_percent": 28.215,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "reverb-rt60-0.4": {
+      "eer": 0.215719,
+      "eer_percent": 21.5719,
+      "auc": 0.824091,
+      "accuracy": 0.783987,
+      "eer_threshold": -3.952883,
+      "pauc_fpr1pct": 0.807699,
+      "pauc_fpr0p1pct": 0.647169,
+      "real_count": 1800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.215719,
+        "eer_point_percent": 21.5719,
+        "ci_lo": 0.206262,
+        "ci_hi": 0.225756,
+        "ci_lo_percent": 20.6262,
+        "ci_hi_percent": 22.5756,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    },
+    "speed0.9": {
+      "eer": 0.22408,
+      "eer_percent": 22.408,
+      "auc": 0.821358,
+      "accuracy": 0.77648,
+      "eer_threshold": -3.790995,
+      "pauc_fpr1pct": 0.785436,
+      "pauc_fpr0p1pct": 0.64459,
+      "real_count": 1800,
+      "fake_count": 598,
+      "ci_eer": {
+        "eer_point": 0.22408,
+        "eer_point_percent": 22.408,
+        "ci_lo": 0.211748,
+        "ci_hi": 0.234236,
+        "ci_lo_percent": 21.1748,
+        "ci_hi_percent": 23.4236,
+        "n_boot": 1000,
+        "n_speakers": 65,
+        "stratified_by": "speaker"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "protocol": "P1",
+  "split": "test",
+  "ckpt": "/data1/cuitianxu/voice_ws/results/det_aug/last.pth",
+  "ckpt_epoch": 20,
+  "overall": {
+    "eer": 0.024331,
+    "eer_percent": 2.4331,
+    "auc": 0.996847,
+    "accuracy": 0.975669,
+    "eer_threshold": 3.217855,
+    "pauc_fpr1pct": 0.920654,
+    "pauc_fpr0p1pct": 0.770821,
+    "real_count": 411,
+    "fake_count": 1233,
+    "ci_eer": {
+      "eer_point": 0.024331,
+      "eer_point_percent": 2.4331,
+      "ci_lo": 0.008482,
+      "ci_hi": 0.036879,
+      "ci_lo_percent": 0.8482,
+      "ci_hi_percent": 3.6879,
+      "n_boot": 1000,
+      "n_speakers": 6,
+      "stratified_by": "speaker"
+    },
+    "at_frozen_threshold": {
+      "threshold": 1.782691,
+      "fpr_real_misjudged_fake": 0.004866,
+      "fnr_fake_misjudged_real": 0.12571,
+      "accuracy": 0.904501,
+      "real_count": 411,
+      "fake_count": 1233
+    }
+  },
+  "frozen_threshold": 1.782691,
+  "groups": {}
+}

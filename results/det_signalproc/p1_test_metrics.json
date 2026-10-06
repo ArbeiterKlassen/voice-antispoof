@@ -1,0 +1,129 @@
+{
+  "protocol": "P1",
+  "split": "test",
+  "ckpt": "/data1/cuitianxu/voice_ws/results/det_signalproc/best.pth",
+  "ckpt_epoch": 5,
+  "overall": {
+    "eer": 0.0,
+    "eer_percent": 0.0,
+    "auc": 1.0,
+    "accuracy": 1.0,
+    "eer_threshold": 1.569057,
+    "pauc_fpr1pct": 0.98815,
+    "pauc_fpr0p1pct": 0.882036,
+    "real_count": 411,
+    "fake_count": 1233,
+    "ci_eer": {
+      "eer_point": 0.0,
+      "eer_point_percent": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0,
+      "ci_lo_percent": 0.0,
+      "ci_hi_percent": 0.0,
+      "n_boot": 1000,
+      "n_speakers": 6,
+      "stratified_by": "speaker"
+    },
+    "at_frozen_threshold": {
+      "threshold": 1.782691,
+      "fpr_real_misjudged_fake": 0.002433,
+      "fnr_fake_misjudged_real": 0.0,
+      "accuracy": 0.999392,
+      "real_count": 411,
+      "fake_count": 1233
+    }
+  },
+  "frozen_threshold": 1.782691,
+  "groups": {
+    "formant": {
+      "eer": 0.0,
+      "eer_percent": 0.0,
+      "auc": 1.0,
+      "accuracy": 1.0,
+      "eer_threshold": 1.569057,
+      "pauc_fpr1pct": 0.970103,
+      "pauc_fpr0p1pct": 0.805627,
+      "real_count": 411,
+      "fake_count": 411,
+      "ci_eer": {
+        "eer_point": 0.0,
+        "eer_point_percent": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.0,
+        "ci_lo_percent": 0.0,
+        "ci_hi_percent": 0.0,
+        "n_boot": 1000,
+        "n_speakers": 6,
+        "stratified_by": "speaker"
+      },
+      "at_frozen_threshold": {
+        "threshold": 1.782691,
+        "fpr_real_misjudged_fake": 0.002433,
+        "fnr_fake_misjudged_real": 0.0,
+        "accuracy": 0.998783,
+        "real_count": 411,
+        "fake_count": 411
+      }
+    },
+    "melvoc": {
+      "eer": 0.0,
+      "eer_percent": 0.0,
+      "auc": 1.0,
+      "accuracy": 1.0,
+      "eer_threshold": 1.569057,
+      "pauc_fpr1pct": 0.970103,
+      "pauc_fpr0p1pct": 0.805627,
+      "real_count": 411,
+      "fake_count": 411,
+      "ci_eer": {
+        "eer_point": 0.0,
+        "eer_point_percent": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.0,
+        "ci_lo_percent": 0.0,
+        "ci_hi_percent": 0.0,
+        "n_boot": 1000,
+        "n_speakers": 6,
+        "stratified_by": "speaker"
+      },
+      "at_frozen_threshold": {
+        "threshold": 1.782691,
+        "fpr_real_misjudged_fake": 0.002433,
+        "fnr_fake_misjudged_real": 0.0,
+        "accuracy": 0.998783,
+        "real_count": 411,
+        "fake_count": 411
+      }
+    },
+    "pitch": {
+      "eer": 0.0,
+      "eer_percent": 0.0,
+      "auc": 1.0,
+      "accuracy": 1.0,
+      "eer_threshold": 1.569057,
+      "pauc_fpr1pct": 0.970103,
+      "pauc_fpr0p1pct": 0.805627,
+      "real_count": 411,
+      "fake_count": 411,
+      "ci_eer": {
+        "eer_point": 0.0,
+        "eer_point_percent": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.0,
+        "ci_lo_percent": 0.0,
+        "ci_hi_percent": 0.0,
+        "n_boot": 1000,
+        "n_speakers": 6,
+        "stratified_by": "speaker"
+      },
+      "at_frozen_threshold": {
+        "threshold": 1.782691,
+        "fpr_real_misjudged_fake": 0.002433,
+        "fnr_fake_misjudged_real": 0.0,
+        "accuracy": 0.998783,
+        "real_count": 411,
+        "fake_count": 411
+      }
+    }
+  }
+}

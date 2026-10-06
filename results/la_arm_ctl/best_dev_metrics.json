@@ -1,0 +1,13 @@
+{
+  "eer": 0.004029,
+  "epoch": 3,
+  "eer_percent": 0.4029,
+  "auc": 0.999919,
+  "accuracy": 0.996,
+  "eer_threshold": 1.036041,
+  "pauc_fpr1pct": 0.994901,
+  "pauc_fpr0p1pct": 0.978676,
+  "real_count": 270,
+  "fake_count": 2730,
+  "loss": 0.032363
+}
