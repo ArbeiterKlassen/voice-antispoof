@@ -154,11 +154,17 @@ def cmd_feats(args):
         if not buf_f:
             return
         p = f"{prefix}_{len(shards):03d}.npz"
-        np.savez(p, F=np.concatenate(buf_f), Y=np.asarray(buf_y, dtype=np.int64))
+        # ⚠️ Y 必须是**帧级**（与 F 行数一致）：训练端按帧做布尔索引 F[Y==lab]。
+        # 曾经错存成文件级（3200 个文件标签 vs 60 万行帧），被 F[sel] 当成行号静默取前缀
+        # → 只用了十几条文件的帧训练（G1-a EER 44.5% 事故）。断言防回归。
+        F_sh = np.concatenate(buf_f)
+        Y_sh = np.repeat(np.asarray(buf_y, dtype=np.int64), [len(f) for f in buf_f])
+        assert len(F_sh) == len(Y_sh), f"分片 F/Y 长度不等：{len(F_sh)} vs {len(Y_sh)}"
+        np.savez(p, F=F_sh, Y=Y_sh)
         shards.append(p)
-        nr = int(np.sum(buf_y))
-        print(f"  [shard] {os.path.basename(p)}：{len(buf_f)} 条（real {nr} / fake {len(buf_y)-nr}）",
-              flush=True)
+        nr_files = int(np.sum(buf_y))
+        print(f"  [shard] {os.path.basename(p)}：{len(buf_f)} 条 / {len(F_sh)} 帧"
+              f"（real 文件 {nr_files} / fake {len(buf_y)-nr_files}）", flush=True)
         buf_f.clear(); buf_y.clear()
 
     with Pool(args.workers) as pool:
@@ -196,7 +202,9 @@ def cmd_train(args):
     cnt = []
     tot = {1: 0, 0: 0}
     for p in paths:
-        Y = np.load(p)["Y"]
+        z = np.load(p); F, Y = z["F"], z["Y"]
+        assert len(F) == len(Y), (f"分片 {p} 的 F/Y 长度不等（{len(F)} vs {len(Y)}）——"
+                                  f"Y 必须是帧级标签；文件级 Y 会被 F[sel] 静默当行号用")
         nr, nf = int((Y == 1).sum()), int((Y == 0).sum())
         cnt.append((p, nr, nf)); tot[1] += nr; tot[0] += nf
     print(f"[train] {len(paths)} 分片，帧计 real {tot[1]} / fake {tot[0]}；"
