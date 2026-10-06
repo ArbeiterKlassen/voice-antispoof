@@ -1,0 +1,46 @@
+# 数据集与模型权重一律不入库，只保留各目录下的 README
+data/*
+!data/README.md
+models/*
+!models/README.md
+logs/
+
+# 常见音频与权重格式，防止误提交
+*.wav
+*.flac
+*.mp3
+*.m4a
+*.ogg
+*.pth
+*.pt
+*.ckpt
+*.bin
+*.safetensors
+*.onnx
+
+# 压缩包与临时下载
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.part
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 运行产物
+*.log
+nohup.out
