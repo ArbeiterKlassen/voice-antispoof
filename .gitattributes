@@ -1,0 +1,17 @@
+# 理论侧在 Windows，实验侧在 Linux，统一按 LF 存储，避免行尾来回改动
+* text=auto eol=lf
+
+# 二进制文件不做换行转换
+*.pth binary
+*.pt binary
+*.ckpt binary
+*.bin binary
+*.npz binary
+*.npy binary
+*.wav binary
+*.flac binary
+*.mp3 binary
+*.png binary
+*.jpg binary
+*.pdf binary
+*.zip binary
