@@ -84,7 +84,8 @@ python scripts/gen_chain_checks.py --selftest
 
 | 项目 | 用途 | 上游 |
 |------|------|------|
-| Amphion | 语音生成工具箱，本项目克隆侧的工作副本来源 | <https://github.com/open-mmlab/Amphion> |
+| **Lab_VoiceClone** | **语音合成侧的原始项目**：本实验所用语音克隆仓库（内容基于 Amphion） | <https://github.com/afterRain-2005/Lab_VoiceClone> |
+| Amphion | 语音生成工具箱（Lab_VoiceClone 的上游） | <https://github.com/open-mmlab/Amphion> |
 | MaskGCT | 零样本 TTS 克隆模型（含于 Amphion） | <https://github.com/open-mmlab/Amphion/tree/main/models/tts/maskgct> |
 | CosyVoice 2 | 零样本克隆模型（生成侧跨模型对照） | <https://github.com/FunAudioLLM/CosyVoice> |
 | F5-TTS | 零样本克隆模型（生成侧跨模型对照） | <https://github.com/SWivid/F5-TTS> |
