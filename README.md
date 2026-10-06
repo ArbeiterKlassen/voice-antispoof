@@ -74,3 +74,25 @@ python scripts/gen_chain_checks.py --selftest
 部署时的整体表现，两者结论方向相反，只报一个会误导。
 
 误报率与判别力分开报。同信道标定修误报，不修不可辨，两类失效需要不同手段。
+
+## 引用与上游项目
+
+本项目建立在以下公开项目之上，特此注明来源。生成侧（语音合成与克隆）的代码与权重**不入库**，
+按上游地址自行获取；数据与权重政策见 `data/README.md`、`models/README.md`。
+
+**生成侧（语音合成与语音克隆）**
+
+| 项目 | 用途 | 上游 |
+|------|------|------|
+| Amphion | 语音生成工具箱，本项目克隆侧的工作副本来源 | <https://github.com/open-mmlab/Amphion> |
+| MaskGCT | 零样本 TTS 克隆模型（含于 Amphion） | <https://github.com/open-mmlab/Amphion/tree/main/models/tts/maskgct> |
+| CosyVoice 2 | 零样本克隆模型（生成侧跨模型对照） | <https://github.com/FunAudioLLM/CosyVoice> |
+| F5-TTS | 零样本克隆模型（生成侧跨模型对照） | <https://github.com/SWivid/F5-TTS> |
+| XTTS-v2（Coqui TTS） | 零样本克隆模型（生成侧跨模型对照） | <https://github.com/coqui-ai/TTS> |
+
+**检测侧**
+
+| 项目 | 用途 | 上游 |
+|------|------|------|
+| AASIST | 检测主后端；官方实现代码内嵌于 `code/aasist/`（来源 commit 见 `docs/实验侧环境.md`） | <https://github.com/clovaai/aasist> |
+| ASVspoof 2019/2021 | 评测数据集与官方基线协议（第三后端 LFCC-GMM 按官方基线口径实现） | <https://www.asvspoof.org/> |
