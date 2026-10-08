@@ -1,0 +1,30 @@
+{
+  "protocol": "P1",
+  "split": "test",
+  "ckpt": "aasist/models/weights/AASIST.pth",
+  "ckpt_epoch": null,
+  "overall": {
+    "eer": 0.171233,
+    "eer_percent": 17.1233,
+    "auc": 0.919674,
+    "accuracy": 0.828762,
+    "eer_threshold": -1.540332,
+    "pauc_fpr1pct": 0.763484,
+    "pauc_fpr0p1pct": 0.701117,
+    "real_count": 22617,
+    "fake_count": 22338,
+    "ci_eer": {
+      "eer_point": 0.171233,
+      "eer_point_percent": 17.1233,
+      "ci_lo": 0.145188,
+      "ci_hi": 0.199409,
+      "ci_lo_percent": 14.5188,
+      "ci_hi_percent": 19.9409,
+      "n_boot": 1000,
+      "n_speakers": 93,
+      "stratified_by": "speaker"
+    }
+  },
+  "frozen_threshold": null,
+  "groups": {}
+}
