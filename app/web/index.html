@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>语音攻防演示平台 · 克隆与辨伪对抗</title>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <header class="topbar">
+            <div class="brand">
+                <span class="mark">VA</span>
+                <div>
+                    <h1>语音攻防演示平台</h1>
+                    <p class="sub">GPT-SoVITS 零样本克隆（攻） · AASIST 语音辨伪（防） · 闭环对抗</p>
+                </div>
+            </div>
+            <div class="status" id="status">
+                <span class="pill" data-role="tts">合成服务检测中…</span>
+                <span class="pill" data-role="detect">辨伪服务检测中…</span>
+                <button class="ghost" id="refresh">刷新状态</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="col">
+                <article class="card">
+                    <h2>一、攻击侧 · 语音克隆</h2>
+                    <p class="hint">
+                        输入文本与参考说话人音频，调用 GPT-SoVITS 生成克隆语音。参考音频选「同说话人真声」，
+                        后续对抗才具备可比性。
+                    </p>
+                    <label class="field">
+                        <span>合成文本</span>
+                        <textarea id="text" rows="3">一大早沁凉的风就暗暗催送时间，拨弄湖水的声音。</textarea>
+                    </label>
+                    <div class="grid two">
+                        <label class="field">
+                            <span>参考说话人音频</span>
+                            <select id="ref"></select>
+                        </label>
+                        <label class="field">
+                            <span>参考音频文本（prompt）</span>
+                            <input id="refText" type="text" placeholder="需与参考音频内容逐字一致，留空则由服务端处理" />
+                        </label>
+                    </div>
+                    <p class="hint">
+                        参考文本必须与参考音频实际说的话一致，否则合成音质会明显下降甚至报错。
+                        选到合成包自带参考音时会自动填入它的逐字文本；换成新音色时记得同步改这里。
+                    </p>
+                    <details class="advanced">
+                        <summary>推理参数</summary>
+                        <div class="grid three">
+                            <label class="field"><span>语速 speed_factor</span><input id="speed" type="number" step="0.05" value="1.0" /></label>
+                            <label class="field"><span>温度 temperature</span><input id="temp" type="number" step="0.05" value="1.0" /></label>
+                            <label class="field"><span>top_k</span><input id="topk" type="number" step="1" value="15" /></label>
+                        </div>
+                    </details>
+                    <div class="actions">
+                        <button id="btnTts" class="primary">仅合成</button>
+                        <button id="btnAttack" class="accent">合成并送检（完整回合）</button>
+                        <label class="upload">
+                            上传参考音频
+                            <input id="refFile" type="file" accept="audio/*" />
+                        </label>
+                    </div>
+                    <div id="ttsOut" class="output"></div>
+                </article>
+
+                <article class="card">
+                    <h2>二、防御侧 · 语音辨伪</h2>
+                    <p class="hint">
+                        上传或用样例音频送检。分数为 AASIST 的真声 logit，越大越「真」；
+                        阈值取 LA dev 的 EER 交点并冻结在 −1.093850，高于阈值即判真。
+                    </p>
+                    <div class="dropzone" id="drop">
+                        <p>把音频文件拖到这里，或</p>
+                        <label class="upload inline">
+                            选择文件
+                            <input id="detFile" type="file" accept="audio/*" />
+                        </label>
+                    </div>
+                    <div class="actions">
+                        <button id="btnDetectLast" class="primary" disabled>把刚合成的音频送检</button>
+                    </div>
+                    <div id="detOut" class="output"></div>
+                </article>
+            </section>
+
+            <aside class="col rail">
+                <article class="card">
+                    <h2>样例库</h2>
+                    <p class="hint">来自辨伪部署包，右侧为组包时实测分数，用于对照判定口径。</p>
+                    <div id="samples" class="samples"></div>
+                </article>
+
+                <article class="card">
+                    <h2>对抗回合记录</h2>
+                    <div class="actions">
+                        <button class="ghost" id="btnRuns">刷新</button>
+                        <button class="ghost danger" id="btnClear">清空记录</button>
+                    </div>
+                    <div id="runs" class="runs"></div>
+                </article>
+
+                <article class="card muted">
+                    <h2>口径说明</h2>
+                    <ul class="notes">
+                        <li>分数是 bonafide logit，不是概率；阈值冻结在 ASVspoof2019 LA dev 的 EER 交点。</li>
+                        <li>输入按 4.04 秒定长处理，短则重复填充，长则取头部，与主报告评估口径一致。</li>
+                        <li>混响、变速、音高等强后处理会让分数整体下移，该阈值随即失效，这是本课题的核心发现之一。</li>
+                        <li>跨代零样本克隆对「冻结在 2019 分布」的检测器存在泛化落差，演示时按实测口径如实说明，不挑窗口凑结论。</li>
+                    </ul>
+                </article>
+            </aside>
+        </main>
+
+        <footer class="foot">
+            <span id="footInfo">voice-arena</span>
+        </footer>
+        <script src="/app.js" type="module"></script>
+    </body>
+</html>

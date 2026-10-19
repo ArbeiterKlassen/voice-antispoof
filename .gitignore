@@ -52,9 +52,24 @@ code/voiceclone/
 # 本机私有环境覆盖（含本机 conda 路径），不入库
 scripts/env.local.sh
 
+# ---- 网页演示站（2026-10-19）----
+# 站点运行期产物与本机配置（app/.gitignore 另有一份局部规则）
+app/data/
+app/logs/
+app/config.json
+# 合成部署包里的权重与中文注音模型，按"权重不入库"的政策排除
+deploy/synthesis/GPT-SoVITS/GPT_SoVITS/pretrained_models/
+deploy/synthesis/GPT-SoVITS/GPT_SoVITS/text/G2PWModel/g2pW.onnx
+
 # data/ 例外：manifest、下载脚本、校验和按约定入库（data/README.md 的口径）
 !data/manifests/
 !data/*.sh
 !data/*.py
 !data/dataset_audit.csv
 !data/split_check.txt
+
+# ---- 合成部署包的运行时缓存与大体积语言资源（2026-10-19）----
+# engdict_cache.pickle 是 GPT-SoVITS 首次运行时生成的英文 g2p 缓存，不是源码
+deploy/synthesis/GPT-SoVITS/GPT_SoVITS/text/engdict_cache.pickle
+# 日文用户词典 16MB，本演示只走中文，需要日文时从上游 GPT-SoVITS 取
+deploy/synthesis/GPT-SoVITS/GPT_SoVITS/text/ja_userdic/userdict.csv

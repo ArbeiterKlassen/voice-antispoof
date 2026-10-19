@@ -1,0 +1,18 @@
+样例来源与实测（2026-10-16 组包；分数 = AASIST bonafide logit，阈值 −1.093850，服务口径=头部 4.04s@16k）
+
+- real.wav      ASVspoof2019 LA test, LA_E_1395552 (spk LA_0061), 4.26s, 真
+                实测 +5.285 → real ✅
+- fake.wav      ASVspoof2019 LA test, LA_E_8877452 (attack A14), 3.98s, 假
+                实测 −2.817 → fake ✅（检测器在其训练分布内有效）
+- clone.wav     GPT-SoVITS v4 零样本克隆（prompt=ref_real.wav；文本"一大早沁凉的风就暗暗催送时间
+                拨弄湖水的声音"；ASR 回译逐字验证通过），9.84s@48k
+                实测 −0.791 → **real（逃逸）**；全曲 4.04s 滑窗 −1.957…+1.587，仅部分段被抓
+- ref_real.wav  同一说话人真声参考音（即 clone 的 prompt），8.94s
+                实测 服务口径 +2.089 → real；滑窗 +2.089/−0.598/+0.373
+
+要点：同一说话人 真声(+2.09) vs 克隆(−0.79) 在服务口径下分得开，**但克隆侧越过阈值**
+→ 2024 代零样本克隆对"冻结在 2019 LA-dev 分布"的检测器构成泛化落差（本课题目的一部分；
+与主报告 DF full-length EER 16.6%、LA-P4 后处理标定崩塌同源）。演示时如实讲，勿挑窗口凑结论。
+
+文件转换：LA flac→wav 16k PCM_16（soundfile）；clone.wav 保留 48k 原始输出（服务会自动重采样，
+以体现真实链路）。clone.wav 源= gptsovits_deploy_20261016/out/deploy_test.wav（部署包实测产物）。

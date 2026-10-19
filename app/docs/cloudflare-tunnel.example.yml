@@ -1,0 +1,33 @@
+# Cloudflare Tunnel 示例配置（复制到 data/cloudflared/config.yml 再改成自己的值）
+#
+# 作用：把公网 https://voice.example.com 指到本机 8790 上的 voice-arena。
+# 好处：443 端口、Cloudflare 边缘签发的有效证书（手机访问不会有证书告警）。
+#
+# 准备步骤：
+#   1. 安装 cloudflared（winget install Cloudflare.cloudflared，或从 Releases 下 exe）
+#   2. cloudflared tunnel login                       # 浏览器里选域名并授权，生成 cert.pem
+#   3. cloudflared tunnel create voice-arena          # 记下输出的 tunnel ID 与凭据路径
+#   4. cloudflared tunnel route dns voice-arena voice.example.com   # 自动加 CNAME
+#   5. 把本文件复制成 data/cloudflared/config.yml，改隧道名、凭据路径、hostname
+#   6. 双击 start-tunnel.bat（前台窗口，Ctrl+C 停）
+
+tunnel: voice-arena
+credentials-file: C:\Users\<你>\.cloudflared\<tunnel-id>.json
+
+# 国内网络下 QUIC(UDP 7844) 常被劣化，用 http2 更稳
+protocol: http2
+no-autoupdate: true
+
+ingress:
+  - hostname: voice.example.com
+    # 本机站点是明文 HTTP，直接写 http://；不需要 noTLSVerify
+    service: http://127.0.0.1:8790
+    originRequest:
+      connectTimeout: 30s
+      tcpKeepAlive: 30s
+      keepAliveTimeout: 5m
+  - service: http_status:404
+
+# 公开前建议至少做一层访问控制，见 README「公网暴露」一节：
+#   A) Cloudflare Zero Trust Access：给主机名加策略，只有指定邮箱能进（最省事、最稳）
+#   B) 本站自带的令牌门：config.json 里填 access.token，非本机 Host 的请求必须带令牌

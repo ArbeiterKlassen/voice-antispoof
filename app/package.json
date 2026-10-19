@@ -1,0 +1,15 @@
+{
+  "name": "voice-arena",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "语音攻防演示平台：GPT-SoVITS 克隆（攻）与 AASIST 辨伪（防）的闭环对抗网页",
+  "scripts": {
+    "start": "node server/index.mjs",
+    "dev": "node --watch server/index.mjs",
+    "check": "node --check server/index.mjs && node --check server/upstream.mjs && node --check server/multipart.mjs && node --check server/store.mjs && node --check server/config.mjs"
+  },
+  "engines": {
+    "node": ">=22.5"
+  }
+}

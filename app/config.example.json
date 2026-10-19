@@ -1,0 +1,33 @@
+{
+  "_说明": "复制为 config.json 后按本机实际路径修改。config.json 已被 .gitignore 忽略，不要把真实令牌提交进仓库。",
+  "host": "127.0.0.1",
+  "port": 8790,
+  "tts": {
+    "baseUrl": "http://127.0.0.1:9880",
+    "path": "/tts",
+    "timeoutMs": 180000,
+    "defaults": {
+      "text_lang": "zh",
+      "prompt_lang": "zh",
+      "ref_audio_path": "<本机路径>/deploy/synthesis/voices/ref_user1.wav",
+      "prompt_text": "一大早沁凉的风就暗暗催送时间拨弄湖水的声音。",
+      "media_type": "wav",
+      "text_split_method": "cut5",
+      "streaming_mode": false
+    }
+  },
+  "detect": {
+    "baseUrl": "http://127.0.0.1:9890",
+    "path": "/detect",
+    "healthPath": "/health",
+    "timeoutMs": 120000,
+    "threshold": -1.09385
+  },
+  "modelDirs": {
+    "antispoof": "<本机路径>/deploy/antispoof",
+    "gptsovits": "<本机路径>/deploy/synthesis"
+  },
+  "access": {
+    "token": ""
+  }
+}
